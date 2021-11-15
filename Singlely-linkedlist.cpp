@@ -27,13 +27,16 @@ class Singlell
 {
 public:
   Node * head;
+  Node * tail;
   Singlell ()
   {
     head = NULL;
+    tail = NULL;
   }
   Singlell (Node * n)
   {
     head = n;
+    tail = n;
   }
   //Checking whether node exist using key
   Node *n_exist (int k)
@@ -63,6 +66,7 @@ public:
 	if (head == NULL)
 	  {
 	    head = n;
+	    tail = n;
 	    cout << "Node added at the bigging" << endl;
 	  }
 	else
@@ -83,19 +87,21 @@ public:
     else
       {
 
-	if (head == NULL)
+	if (tail == NULL)
 	  {
+	    tail = n;
 	    head = n;
 	    cout << "Node added at the end" << endl;
 	  }
 	else
 	  {
-	    Node *ptr = head;
-	    while (ptr->next != NULL)
-	      {
-		ptr = ptr->next;
-	      }
+	    Node *ptr = tail;
+// 	    while (ptr->next != NULL)
+// 	      {
+// 		ptr = ptr->next;
+// 	      }
 	    ptr->next = n;
+	    tail = n;
 	    cout << "Node added at the end" << endl;
 	  }
       }
@@ -146,6 +152,7 @@ public:
 	if (temp != NULL)
 	  {
 	    prev_e->next = temp->next;
+	    delete temp;
 	    cout << "Node deleted" << endl;
 	  }
 	else
@@ -171,6 +178,7 @@ public:
     //       cout<<"Node deleted"<<endl;
     //   }
   }
+//Function for printing	
   void print_e()
   {
       Node * ptr = head;
@@ -186,7 +194,7 @@ public:
       {
           while(ptr->next!=NULL)
           {
-              cout<<"("<<ptr->key<<","<<ptr->data<<")"<<"-->"<<endl;
+              cout<<"("<<ptr->key<<","<<ptr->data<<")"<<"-->";
               ptr = ptr->next;
           }
           cout<<"("<<ptr->key<<","<<ptr->data<<")"<<endl;
@@ -203,7 +211,6 @@ main ()
 
   do
     {
-      system ("cls");
       cout << "Select the option according to the function use" << "\n" <<
 	"Choose option 0 to exist the screen" << endl;
       cout << "1.insert_b" << endl;
@@ -268,6 +275,10 @@ main ()
 	      cout<<"The elements in the list are : "<<endl;
 	      s.print_e();
 	      break;
+	  }
+	  case 6:
+	  {
+	      system("cls");
 	  }
 	default:
 	  {
